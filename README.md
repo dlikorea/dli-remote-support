@@ -14,7 +14,7 @@ SignPath Foundation 무료 Authenticode 서명 신청은 프로젝트의 공개 
 
 [Code signing policy](CODE_SIGNING_POLICY.md) · [Privacy policy](PRIVACY.md) · [MIT License](LICENSE)
 
-Microsoft Store의 무료 MSIX 서명과 웹 설치 파일을 사용하는 배포 경로를 준비하고 있습니다. 아직 Store 등록·심사·배포가 완료되지 않았으며 위 다운로드는 기존 EXE입니다. 패키징과 제출 준비 상태는 [Store 배포 안내](store/README.md)를 참고하세요.
+Microsoft Store의 무료 MSIX 서명과 웹 설치 파일을 사용하는 배포 경로로 1.3.0.0 패키지를 제출했습니다. 현재 심사 중이며 위 다운로드는 기존 EXE입니다. 승인·서명과 새 다운로드 배포는 아직 완료되지 않았습니다. 등록 정보와 배포 절차는 [Store 배포 안내](store/README.md)를 참고하세요.
 
 ## 사용
 

@@ -8,7 +8,7 @@
 
 [SignPath Foundation 신청 조건](https://signpath.org/terms)
 
-Microsoft Store에 MSIX로 제출해 Microsoft의 무료 패키지 서명을 사용하는 별도 배포 경로를 준비하고 있습니다. 현재 검증 빌드는 로컬 점검용 ID를 사용한 unsigned MSIX입니다. Store 승인과 재서명을 완료하기 전에는 Windows 신뢰 서명 적용이나 새 웹 설치 배포가 완료됐다고 안내하지 않습니다. [Store 배포 안내](store/README.md)
+Microsoft Store에 MSIX로 제출해 Microsoft의 무료 패키지 서명을 사용하는 별도 배포 경로를 진행 중입니다. 2026-11-19 실제 발급 ID `9P0HBM1W0KKZ`로 빌드한 1.3.0.0 x64 MSIX의 심사를 제출했고, 확인 당시 인증 중·사전 처리 중이었습니다. GitHub의 등록 전 점검 패키지와 제출용 패키지는 unsigned 산출물입니다. Store 승인과 재서명을 완료하기 전에는 Windows 신뢰 서명 적용이나 새 웹 설치 배포가 완료됐다고 안내하지 않습니다. [Store 배포 안내](store/README.md)
 
 ## 담당자
 

@@ -123,7 +123,11 @@ internal static class CustomerFiles
         if (String.IsNullOrEmpty(root) || !Path.IsPathRooted(root) || root.StartsWith(@"\\", StringComparison.Ordinal)
             || parts == null || parts.Length > (drive ? 64 : 16) || (!folder && parts.Length == 0)) throw new IOException();
         root = Path.GetFullPath(root).TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
-        if ((!drive && root.Length <= 3) || (Inspect(root) & FileAttributes.Directory) == 0) throw new IOException();
+        // Windows marks volume roots Hidden|System; those flags must still exclude their children.
+        FileAttributes rootAttributes = File.GetAttributes(root);
+        FileAttributes excludedRoot = drive ? Excluded & ~(FileAttributes.Hidden | FileAttributes.System) : Excluded;
+        if ((!drive && root.Length <= 3) || (rootAttributes & excludedRoot) != 0
+            || (rootAttributes & FileAttributes.Directory) == 0) throw new IOException();
         string current = root;
         for (int index = 0; index < parts.Length; index++)
         {

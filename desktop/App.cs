@@ -15,7 +15,9 @@ internal static class DesktopApp
         ServicePointManager.DefaultConnectionLimit = 12;
         Product.InitUi();
         bool operatorMode = Product.IsOperator(args);
+#if !DLI_STORE
         bool skipUpdate = Array.IndexOf(args, "--skip-update") >= 0;
+#endif
         try
         {
             using (Mutex mutex = Product.ApplicationMutex())
@@ -28,6 +30,7 @@ internal static class DesktopApp
                 }
                 try
                 {
+#if !DLI_STORE
                     if (!skipUpdate)
                     {
                         using (var startup = new StartupWindow(operatorMode))
@@ -36,6 +39,7 @@ internal static class DesktopApp
                             if (startup.UpdateStarted || startup.UserClosed) return 0;
                         }
                     }
+#endif
                     if (!operatorMode)
                     {
                         Application.Run(new CustomerWindow(Product.DefaultServer.AbsoluteUri, lockServer: !Product.DefaultServer.IsLoopback));
@@ -61,6 +65,7 @@ internal static class DesktopApp
     }
 }
 
+#if !DLI_STORE
 internal sealed class StartupWindow : Form
 {
     private readonly CancellationTokenSource cancel = new CancellationTokenSource();
@@ -137,3 +142,4 @@ internal sealed class StartupWindow : Form
         }
     }
 }
+#endif

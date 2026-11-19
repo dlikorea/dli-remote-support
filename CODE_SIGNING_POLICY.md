@@ -8,6 +8,8 @@
 
 [SignPath Foundation 신청 조건](https://signpath.org/terms)
 
+Microsoft Store에 MSIX로 제출해 Microsoft의 무료 패키지 서명을 사용하는 별도 배포 경로를 준비하고 있습니다. 현재 검증 빌드는 로컬 점검용 ID를 사용한 unsigned MSIX입니다. Store 승인과 재서명을 완료하기 전에는 Windows 신뢰 서명 적용이나 새 웹 설치 배포가 완료됐다고 안내하지 않습니다. [Store 배포 안내](store/README.md)
+
 ## 담당자
 
 | 역할 | 담당 |

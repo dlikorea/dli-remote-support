@@ -24,10 +24,12 @@
 
 설치된 앱은 실행할 때 설정된 서버의 업데이트 목록을 확인합니다. 사용자가 업데이트 설치를 선택하면 설치 파일을 내려받고 업데이트 서명과 파일 해시를 검증합니다. 앱에 지정된 서버는 이런 요청의 접속 IP와 요청 경로를 확인할 수 있습니다.
 
+준비 중인 Microsoft Store MSIX 버전은 Windows와 Microsoft Store에서 설치·제거·업데이트를 관리합니다. 이 빌드는 위 NAS 설치파일 업데이트 기능을 포함하지 않습니다. Store의 다운로드·설치·업데이트 처리에는 Microsoft의 개인정보 정책이 적용됩니다. 원격지원 세션의 데이터 처리 방식은 위 설명과 같습니다.
+
 ## 외부 서비스와 문의
 
-공개 소스와 빌드 기록은 GitHub에서 제공됩니다. GitHub의 계정 및 웹사이트 이용에는 GitHub의 개인정보 정책이 적용됩니다. SignPath 무료 코드 서명 신청을 진행하며, 해당 서비스의 승인을 받은 빌드에는 서명 서비스가 사용됩니다.
+공개 소스와 빌드 기록은 GitHub에서 제공됩니다. GitHub의 계정 및 웹사이트 이용에는 GitHub의 개인정보 정책이 적용됩니다. SignPath Foundation 무료 코드 서명 신청은 승인되지 않았으며 현재 운영 배포에 해당 서명 서비스를 사용하지 않습니다.
 
-개인정보 관련 문의는 저장소 소유자에게 전달할 수 있습니다. 공개 이슈에는 고객 코드, 상담원 키, 파일 내용 같은 세션 정보를 포함하지 마세요.
+개인정보 관련 문의는 info@dlicompany.com으로 전달할 수 있습니다. 공개 이슈에는 고객 코드, 상담원 키, 파일 내용 같은 세션 정보를 포함하지 마세요.
 
-[저장소 소유자](https://github.com/dlikorea) · [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement) · [SignPath Privacy Policy](https://about.signpath.io/privacy-policy)
+[저장소 소유자](https://github.com/dlikorea) · [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement) · [Microsoft 개인정보처리방침](https://privacy.microsoft.com/privacystatement)

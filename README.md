@@ -10,7 +10,7 @@ DLI Remote Support는 Windows 고객 앱과 브라우저 상담원 화면으로 
 
 [디엘아이 원격지원 설치 파일](https://remote.dlicompany.com/download)
 
-무료 Authenticode 서명을 위한 SignPath Foundation 신청을 준비 중입니다. 현재 1.2.0.0 배포 파일에는 Windows 게시자 서명이 없으며, SmartScreen 경고가 표시될 수 있습니다. 신청 진행과 서명 상태는 Code signing policy에서 안내합니다.
+2026년 11월 19일 SignPath Foundation 무료 Authenticode 서명을 신청했고 재단 심사를 기다리고 있습니다. 현재 1.2.0.0 배포 파일에는 Windows 게시자 서명이 없으며, SmartScreen 경고가 표시될 수 있습니다. 신청 진행과 서명 상태는 Code signing policy에서 안내합니다.
 
 [Code signing policy](CODE_SIGNING_POLICY.md) · [Privacy policy](PRIVACY.md) · [MIT License](LICENSE)
 

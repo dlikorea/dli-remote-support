@@ -1,0 +1,45 @@
+name: Build Windows installer
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check relay JavaScript
+        shell: pwsh
+        run: |
+          node --check server.js
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node --check public/app.js
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Build from public source and public verification key
+        shell: pwsh
+        run: |
+          .\Build-Installer.ps1 -Version 1.2.0.0 `
+            -Server https://remote.dlicompany.com/ `
+            -UpdatePublicKeyPath .\release\update-public-key.json `
+            -OutDir .\dist
+      - name: Record artifact hash
+        shell: pwsh
+        run: |
+          $artifact = Get-Item -LiteralPath .\dist\DLI-RemoteSupport-Setup.exe
+          $digest = (Get-FileHash -LiteralPath $artifact.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+          "$digest  $($artifact.Name)" | Set-Content -LiteralPath .\dist\SHA256SUMS.txt -Encoding utf8
+      - name: Upload unsigned build for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: dli-remote-support-unsigned
+          path: |
+            dist/DLI-RemoteSupport-Setup.exe
+            dist/SHA256SUMS.txt
+          if-no-files-found: error

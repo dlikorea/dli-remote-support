@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>디엘아이 원격지원</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand" aria-label="디엘아이 원격지원">
+        <span class="brand-mark" aria-hidden="true">DLI</span>
+        <span class="brand-name">디엘아이 원격지원</span>
+      </div>
+      <span class="workspace-label">상담원 화면</span>
+    </div>
+  </header>
+  <main class="workspace">
+    <div class="page-heading">
+      <h1>디엘아이 원격지원</h1>
+      <p>고객이 알려 준 접속 코드를 입력해 연결하세요.</p>
+    </div>
+    <div class="layout">
+      <div class="sidebar">
+        <section class="connection card" aria-labelledby="connection-title">
+          <header class="card-header">
+            <h2 id="connection-title">고객 연결</h2>
+            <span class="status" data-tone="idle" id="status-label">연결 전</span>
+          </header>
+          <form id="join-form" autocomplete="off">
+            <label for="code">고객 접속 코드</label>
+            <input id="code" name="code" type="text" inputmode="numeric" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="11" placeholder="0000 0000" required aria-describedby="code-hint">
+            <p class="hint" id="code-hint">고객 화면에 표시된 숫자 8자리</p>
+            <label for="key">상담원 키</label>
+            <input id="key" name="key" type="password" autocomplete="off" maxlength="128" placeholder="서버에서 발급받은 키" required>
+            <button type="submit" class="button primary" id="join-button">고객과 연결</button>
+          </form>
+          <div id="session-info" class="session-info" hidden>
+            <p class="field-label">고객 접속 코드</p>
+            <p id="connected-code" class="connected-code"></p>
+            <button type="button" class="button danger" id="end-button">지원 종료</button>
+          </div>
+          <p id="status-detail" class="notice" role="status" aria-live="polite">접속 코드는 한 번만 사용할 수 있습니다.</p>
+        </section>
+        <section class="card" id="memo-panel" aria-labelledby="memo-title" hidden>
+          <header class="card-header">
+            <h2 id="memo-title">상담원 메모</h2>
+          </header>
+          <form id="memo-form" class="file-content" autocomplete="off">
+            <label for="memo">고객에게 표시할 메모</label>
+            <textarea id="memo" rows="4" maxlength="600" aria-describedby="memo-help"></textarea>
+            <p id="memo-help" class="hint">보낸 메모는 연결 중 고객용 창에 표시됩니다.</p>
+            <button id="memo-button" class="button secondary" type="submit">메모 보내기</button>
+          </form>
+          <p id="memo-status" class="notice" role="status" aria-live="polite" hidden></p>
+        </section>
+        <section class="card" id="file-panel" aria-labelledby="file-title" hidden>
+          <header class="card-header">
+            <h2 id="file-title">파일 전송</h2>
+          </header>
+          <div class="file-content">
+            <div id="file-browser" hidden>
+              <label for="file-root">고객 PC에서 파일 가져오기</label>
+              <div class="file-browser-controls">
+                <select id="file-root">
+                  <optgroup label="빠른 폴더">
+                    <option value="desktop">바탕 화면</option>
+                    <option value="documents">문서</option>
+                    <option value="downloads">다운로드</option>
+                  </optgroup>
+                  <optgroup id="customer-drives" label="고객 PC 드라이브" hidden></optgroup>
+                </select>
+                <button type="button" class="button secondary" id="browse-open">열기</button>
+                <button type="button" class="button secondary" id="browse-up" disabled>상위</button>
+              </div>
+              <button type="button" class="button secondary" id="browse-drives" hidden>드라이브 새로고침</button>
+              <p id="browse-path" class="hint" hidden></p>
+              <ul id="browse-list" class="file-list" aria-label="고객 PC의 파일"></ul>
+            </div>
+            <p id="browser-unavailable" class="hint" hidden>고객 앱을 업데이트하면 파일을 직접 가져올 수 있습니다. 기존 앱에서는 고객이 파일을 보내야 합니다.</p>
+            <form id="file-form">
+              <label for="file-picker">고객에게 보낼 파일</label>
+              <input id="file-picker" name="file" type="file" aria-describedby="file-limit" required>
+              <p id="file-limit" class="hint">파일당 최대 20 MiB</p>
+              <button type="submit" class="button secondary" id="send-file">파일 보내기</button>
+            </form>
+            <h3>고객에게서 받은 파일</h3>
+            <p id="empty-files" class="file-empty">받은 파일이 없습니다.</p>
+            <ul id="file-list" class="file-list" aria-label="받은 파일"></ul>
+          </div>
+          <p id="file-status" class="notice" role="status" aria-live="polite" hidden></p>
+        </section>
+      </div>
+      <section class="screen card" id="screen-panel" aria-labelledby="screen-title">
+        <header class="card-header screen-header">
+          <div>
+            <h2 id="screen-title">고객 화면</h2>
+            <p class="screen-subtitle" id="screen-mode">연결 대기</p>
+          </div>
+          <div class="screen-controls">
+            <select id="monitor-select" aria-label="고객 모니터 선택" hidden></select>
+            <button class="button secondary" id="fullscreen-button" type="button" hidden>전체 화면</button>
+          </div>
+        </header>
+        <div class="stage" id="stage" tabindex="-1">
+          <div class="empty" id="empty-screen">
+            <span class="monitor-icon" aria-hidden="true"></span>
+            <p id="empty-title">고객 연결 대기</p>
+            <p id="empty-detail">고객에게 받은 접속 코드를 입력하세요.</p>
+          </div>
+          <img id="remote-image" alt="고객이 공유한 모니터 화면" draggable="false" hidden>
+          <textarea id="remote-keyboard" tabindex="-1" aria-label="고객 화면 키보드 조작" aria-describedby="input-help" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
+        </div>
+        <p class="screen-footer" id="input-help">연결하면 고객의 기본 모니터가 표시됩니다.</p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

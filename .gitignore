@@ -1,0 +1,17 @@
+*.dpapi
+*.pfx
+*.p12
+*.pem
+*.key
+*.env
+relay.env
+server-url.txt
+node_modules/
+build/
+dist/
+feed/
+*.exe
+*.dll
+*.zip
+*.log
+**/build-*/

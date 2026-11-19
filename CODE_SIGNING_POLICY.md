@@ -2,13 +2,11 @@
 
 ## 진행 상태
 
-2026년 11월 19일 SignPath Foundation 무료 오픈소스 코드 서명 신청이 접수되었습니다. 재단 심사를 기다리고 있으며 실제 운영 서명은 승인 후 진행합니다. 현재 공개 다운로드의 1.2.0.0 설치 파일은 Windows Authenticode 서명이 없습니다.
+2026년 11월 19일 접수한 SignPath Foundation 무료 오픈소스 코드 서명 신청은 프로젝트의 공개 사용·기여 이력과 외부 인지도가 부족하다는 사유로 승인되지 않았습니다. 재단은 공개 활동과 커뮤니티 이용 이력이 쌓인 뒤 재신청할 수 있다고 안내했습니다.
 
-승인 후 적용할 서명 지원 표기는 다음과 같습니다.
+현재 공개 다운로드의 1.2.0.0 설치 파일은 Windows Authenticode 서명이 없습니다. 실제 서명 적용과 배포에는 사용할 수 있는 공개 신뢰 코드 서명 인증서 또는 서명 서비스가 필요합니다.
 
-“Free code signing provided by SignPath.io, certificate by SignPath Foundation.”
-
-[SignPath.io](https://about.signpath.io/) · [SignPath Foundation](https://signpath.org/)
+[SignPath Foundation 신청 조건](https://signpath.org/terms)
 
 ## 담당자
 
@@ -24,7 +22,7 @@
 
 ## 빌드와 배포
 
-GitHub Actions의 Windows 호스팅 실행기에서 공개 커밋을 빌드합니다. 빌드에는 업데이트 검증용 공개 키만 사용합니다. 현재 워크플로는 검토할 unsigned 산출물을 생성합니다. SignPath에서 프로젝트와 인증서가 승인되면 빌드 산출물을 출처 검증이 연결된 서명 요청으로 전달합니다.
+GitHub Actions의 Windows 호스팅 실행기에서 공개 커밋을 빌드합니다. 빌드에는 업데이트 검증용 공개 키만 사용합니다. 현재 워크플로는 검토할 unsigned 산출물을 생성합니다. 코드 서명 서비스가 준비되면 빌드 산출물의 출처를 확인하는 서명 절차를 연동합니다.
 
 현재 설치 프로그램은 고객 앱을 리소스로 포함합니다. 운영 서명 단계에서는 안쪽 고객 앱을 먼저 서명한 후 설치 프로그램에 포함하고, 바깥 설치 프로그램을 서명합니다. 최종 설치 파일을 검증한 다음 별도로 관리하는 업데이트 발행 키로 업데이트 목록을 발행합니다.
 

@@ -44,14 +44,14 @@ jobs:
             Where-Object { Test-Path (Join-Path $_.FullName 'x64\makeappx.exe') } |
             Select-Object -First 1
           if (-not $sdk) { throw 'Windows SDK MakeAppx not found.' }
-          .\Build-Msix.ps1 -Version 1.3.0.0 -Server https://remote.dlicompany.com/ `
+          .\Build-Msix.ps1 -Version 1.3.1.0 -Server https://remote.dlicompany.com/ `
             -MakeAppx (Join-Path $sdk.FullName 'x64\makeappx.exe') `
             -OutDir .\dist\msix-validation -ValidationBuild
-          .\store\Test-Msix.ps1 -Package .\dist\msix-validation\DLI-RemoteSupport-1.3.0.0-validation-x64.msix
-          .\Build-Msix.ps1 -Version 1.3.0.0 -Server https://remote.dlicompany.com/ `
+          .\store\Test-Msix.ps1 -Package .\dist\msix-validation\DLI-RemoteSupport-1.3.1.0-validation-x64.msix
+          .\Build-Msix.ps1 -Version 1.3.1.0 -Server https://remote.dlicompany.com/ `
             -MakeAppx (Join-Path $sdk.FullName 'x64\makeappx.exe') `
             -OutDir .\dist\msix-submission -IdentityPath .\store\identity.json
-          .\store\Test-Msix.ps1 -Package .\dist\msix-submission\DLI-RemoteSupport-1.3.0.0-x64.msix
+          .\store\Test-Msix.ps1 -Package .\dist\msix-submission\DLI-RemoteSupport-1.3.1.0-x64.msix
       - name: Upload Store validation package
         uses: actions/upload-artifact@v4
         with:

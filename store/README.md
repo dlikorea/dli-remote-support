@@ -7,7 +7,9 @@
 - `Build-Msix.ps1`은 기존 고객 앱과 파일·모니터 기능을 포함하는 x64 MSIX를 생성합니다.
 - Store 빌드는 NAS 설치파일 업데이터와 설치/제거 실행 파일을 포함하지 않습니다. 설치·제거·패키지 업데이트는 Windows와 Microsoft Store가 관리합니다.
 - 고객 화면에는 역할 선택을 추가하지 않습니다. 상담원은 기존 HTTPS 웹 화면과 별도 상담원 인증을 사용합니다.
-- **2026-11-19 Microsoft Store에 1.3.0.0 MSIX의 심사를 제출했습니다. 확인 당시 상태는 인증 중·사전 처리 중입니다. 현재 운영 다운로드는 아직 1.2.0.0 EXE이며, Store 승인·서명·웹 설치 배포가 완료된 상태는 아닙니다.**
+- **2026-11-19 Microsoft Store에 1.3.1.0 MSIX의 심사를 제출했습니다. 확인 당시 상태는 인증 중·사전 처리 중입니다. 현재 운영 다운로드는 아직 1.2.0.0 EXE이며, Store 승인·서명·웹 설치 배포가 완료된 상태는 아닙니다.**
+
+2026-11-19 게시자 표시 이름의 오타를 `DLIcompny`에서 `dlicompany`로 정정했습니다. 기존 1.3.0.0 인증을 취소하고 새 게시자 표시 이름을 담은 1.3.1.0으로 교체해 재제출했습니다. 패키지의 내부 Identity Name과 Publisher GUID는 기존 할당값을 유지합니다.
 
 ## 등록 정보
 
@@ -17,8 +19,8 @@
 | Store ID | `9P0HBM1W0KKZ` |
 | Package Identity Name | `DLIcompny.960609D13CC8` |
 | Package Publisher | `CN=5BB818FA-B8CC-4957-A417-E059C0E79238` |
-| Publisher Display Name | `DLIcompny` (Microsoft 개발자 계정에서 발급된 값) |
-| 제출 버전 | `1.3.0.0`, x64, Windows 10 build 19041 이상 |
+| Publisher Display Name | `dlicompany` (2026-11-19 정정, 검증 요약에서 Authorized 확인) |
+| 제출 버전 | `1.3.1.0`, x64, Windows 10 build 19041 이상 |
 | 제출 파일 SHA-256 | `3bab220560e93e8fedc7bec0948d554d9695859781ea76c2883c87f536a00d42` |
 | 가격·표시 | 무료, Microsoft Store 검색에 표시하지 않음, 직접 링크로 획득 |
 | 등급 | IARC 3세 이상·사용자 상호작용 (지역별 표시 차이 있음) |
@@ -35,10 +37,10 @@ Windows .NET Framework 컴파일러와 Windows SDK의 MakeAppx가 필요합니�
 등록 전 점검용 패키지는 실제 Store ID를 사용하지 않습니다.
 
 ```powershell
-.\Build-Msix.ps1 -Version 1.3.0.0 -Server https://remote.dlicompany.com/ `
+.\Build-Msix.ps1 -Version 1.3.1.0 -Server https://remote.dlicompany.com/ `
   -MakeAppx 'C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64\makeappx.exe' `
   -OutDir .\dist\msix-validation -ValidationBuild
-.\store\Test-Msix.ps1 -Package .\dist\msix-validation\DLI-RemoteSupport-1.3.0.0-validation-x64.msix
+.\store\Test-Msix.ps1 -Package .\dist\msix-validation\DLI-RemoteSupport-1.3.1.0-validation-x64.msix
 ```
 
 점검용 패키지는 고객 배포·Store 제출 대상이 아니며 서명돼 있지 않습니다. 테스트를 위해 고객 PC의 인증서 저장소나 SmartScreen 설정을 변경하지 않습니다. 점검 스크립트는 패키지 구조와 압축 해제한 앱의 기능을 검사합니다. 실제 Store 설치·자동 업데이트와 두 PC 간 원격조작은 정식 패키지로 추가 확인해야 합니다.
@@ -73,3 +75,4 @@ Windows .NET Framework 컴파일러와 Windows SDK의 MakeAppx가 필요합니�
 - [회사 등록 무료화](https://blogs.windows.com/windowsdeveloper/2026/05/07/publish-to-microsoft-store-as-a-company-now-with-free-registration-and-faster-onboarding/)
 - [MSIX 수동 패키징](https://learn.microsoft.com/en-us/windows/msix/desktop/desktop-to-uwp-manual-conversion)
 - [서명 옵션과 Store MSIX 재서명](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/code-signing-options)
+

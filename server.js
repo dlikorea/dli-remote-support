@@ -29,6 +29,14 @@ const publicOrigin = process.env.DLI_PUBLIC_ORIGIN ? new URL(process.env.DLI_PUB
 const proxyToken = process.env.DLI_PROXY_TOKEN;
 const privateProxy = Boolean(proxyToken && publicOrigin);
 const updateRoot = process.env.DLI_UPDATE_DIR ? path.resolve(process.env.DLI_UPDATE_DIR) : null;
+const storeProductFile = updateRoot ? path.join(updateRoot, 'store-product-id.txt') : null;
+const storeProductId = storeProductFile && fs.existsSync(storeProductFile) ? fs.readFileSync(storeProductFile, 'utf8').trim() : '';
+if (storeProductId && !/^[A-Z0-9]{12}$/.test(storeProductId)) throw new Error('store-product-id.txt에는 Microsoft Store의 12자리 제품 ID를 지정하세요.');
+const storeDownloadUrl = storeProductId ? new URL(`https://get.microsoft.com/installer/download/${storeProductId}`) : null;
+if (storeDownloadUrl) {
+  storeDownloadUrl.searchParams.set('referrer', 'appbadge');
+  if (publicOrigin) storeDownloadUrl.searchParams.set('source', publicOrigin.hostname);
+}
 const configuredKey = process.env.DLI_OPERATOR_KEY;
 const protectedKeyPath = process.env.DLI_OPERATOR_KEY_FILE;
 const storedKey = protectedKeyPath ? fs.readFileSync(protectedKeyPath, 'utf8').trim() : '';
@@ -435,6 +443,10 @@ async function route(req, res) {
     return;
   }
   if (requestPath === '/favicon.ico' && method === 'GET') { res.writeHead(204).end(); return; }
+  if (method === 'GET' && storeDownloadUrl && requestPath === '/download') {
+    res.writeHead(302, { Location: storeDownloadUrl.href }).end();
+    return;
+  }
   if (method === 'GET' && updateRoot && requestPath === '/download') {
     let release;
     try { release = JSON.parse(await fs.promises.readFile(path.join(updateRoot, 'manifest.json'), 'utf8')); }

@@ -6,25 +6,25 @@ DLI Remote Support는 Windows 고객 앱과 브라우저 상담원 화면으로 
 
 ## 다운로드
 
-고객과 상담원은 같은 Windows 설치 파일을 사용합니다. 설치된 앱은 실행할 때 업데이트를 확인합니다.
+고객은 Windows 설치 파일 하나를 받아 실행하면 됩니다. 현재 다운로드는 Microsoft가 서명한 Store 웹 설치 파일이며, 앱 설치와 업데이트는 Microsoft Store가 관리합니다. 상담원은 브라우저에서 원격지원 서버에 접속합니다.
 
 [디엘아이 원격지원 설치 파일](https://remote.dlicompany.com/download)
 
-SignPath Foundation 무료 Authenticode 서명 신청은 프로젝트의 공개 사용·기여 이력이 부족하다는 사유로 승인되지 않았습니다. 현재 1.2.0.0 배포 파일에는 Windows 게시자 서명이 없으며, SmartScreen 경고가 표시될 수 있습니다. 서명 상태는 Code signing policy에서 안내합니다.
+2026-11-20 Microsoft Store의 1.3.1.0 게시와 설치를 확인하고 기존 다운로드 주소를 Microsoft 공식 웹 설치 경로로 전환했습니다. 게시자 표시 이름은 `dlicompany`입니다. 기존 1.2.0.0 EXE 설치 사용자의 업데이트 경로는 별도로 유지합니다.
 
 [Code signing policy](CODE_SIGNING_POLICY.md) · [Privacy policy](PRIVACY.md) · [MIT License](LICENSE)
 
-Microsoft Store의 무료 MSIX 서명과 웹 설치 파일을 사용하는 배포 경로로 1.3.0.0 패키지를 제출했습니다. 현재 심사 중이며 위 다운로드는 기존 EXE입니다. 승인·서명과 새 다운로드 배포는 아직 완료되지 않았습니다. 등록 정보와 배포 절차는 [Store 배포 안내](store/README.md)를 참고하세요.
+등록 정보, 설치 검증 범위와 배포 절차는 [Store 배포 안내](store/README.md)를 참고하세요. GitHub Actions에서 빌드한 제출용 MSIX 자체는 unsigned이며, 고객에게는 Microsoft Store를 거쳐 서명된 설치 경로를 제공합니다.
 
 ## 사용
 
-1. Windows 10/11 및 .NET Framework 4.8 이상인 PC에 설치합니다.
+1. Windows 10 버전 2004 이상 또는 Windows 11의 64비트 PC에 설치합니다. .NET Framework 4.8 이상과 인터넷 연결이 필요합니다.
 2. 고객 앱의 **지원 코드 만들기**를 누르고 통화 중인 상담원에게 코드를 알려줍니다.
 3. 상담원은 브라우저에서 배포 서버 주소를 열고 고객 코드와 상담원 키를 입력합니다.
 4. 상담원은 고객 화면에서 마우스와 키보드를 조작합니다. F8 키로 브라우저의 원격 키보드 입력을 멈춥니다.
 5. 고객과 상담원은 각각 **지원 종료**로 연결을 끝낼 수 있습니다.
 
-상담원 PC에서 다음 명령으로 같은 설치 파일을 실행하면 상담원 바로가기를 추가할 수 있습니다.
+상담원은 `https://remote.dlicompany.com/`을 브라우저에서 엽니다. 기존 EXE 설치 파일을 사용하는 환경에서는 다음 명령으로 상담원 바로가기를 추가할 수 있습니다.
 
 ```powershell
 & '.\DLI-RemoteSupport-Setup.exe' --operator
